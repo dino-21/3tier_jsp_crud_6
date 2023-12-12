@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dino.domain.TestVO;
 import com.dino.service.SampleService;
@@ -19,6 +20,22 @@ import lombok.extern.log4j.Log4j;
 @RequiredArgsConstructor
 public class SampleController {
 	private final SampleService service;
+	
+	@GetMapping("/insert")
+	public String insert() {
+		return "insert";
+	}
+
+	@PostMapping("/insert")
+	public String insertPOST(TestVO vo, RedirectAttributes redirectAttributes) {
+		
+		log.info("insertPost => " + vo);
+		service.insert(vo);
+		redirectAttributes.addFlashAttribute("msg", "등록이 완료되었습니다.");
+		return "redirect:/list";
+	}
+	
+	
 	
 	@GetMapping("/read")                           //Model은 jsp화면에 값을 전달하고 싶을때 사용
 	public String read(@RequestParam("id") int id, Model model) {
@@ -43,10 +60,19 @@ public class SampleController {
 	}
 	
 	@PostMapping("/update")
-	public String update(TestVO vo) {
+	public String update(TestVO vo, RedirectAttributes redirectAttributes) {
 		log.info("update=>" + vo);
 		int result = service.update(vo);
+		redirectAttributes.addFlashAttribute("msg", "수정이 완료되었습니다.");
 		return "redirect:/list";
 	}
 	
+
+	@PostMapping("/delete")
+	public String delete(TestVO vo, RedirectAttributes redirectAttributes) {
+		log.info("delete ==> " + vo.getId());
+		service.delete(vo.getId());
+		redirectAttributes.addFlashAttribute("msg", "삭제가 완료되었습니다.");
+		return "redirect:/list";
+	}
 }

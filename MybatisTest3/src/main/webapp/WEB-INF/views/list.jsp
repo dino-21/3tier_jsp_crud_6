@@ -21,7 +21,7 @@
 	<!-- ${list}  -->
 	<div class="container">
 		<h2>list</h2>
-
+        <button type="button" class="btn btn-info mb-2  float-right" onclick="window.location.href='insert'">등록</button>
 		<table class="table">
 			<thead>
 				<tr>
@@ -40,5 +40,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		  <h3>${msg}</h3>
+		</div>
 </body>
 </html>
