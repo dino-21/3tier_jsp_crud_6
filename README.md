@@ -2,19 +2,16 @@
 3tier_jsp_crud_6
 
 
-
-![44-2](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/02836768-0901-4573-8f53-04450aa6fe3f)
-
-
-![1-1](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/cc5eb886-211f-4a47-b1de-54e515ce0762)
+![45](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/76246318-ac99-4971-88d5-b14294471005)
 
 
-![1-3](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/ebeec713-d58c-423e-b54d-5cd25803e1b6)
+![11](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/6bf2c466-4921-4703-9f6a-a6ca92fc3030)
 
 
-![1-5](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/df1c9103-7ba7-470f-98b2-8bf0d73a6bce)
+![24](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/7c25eaac-52b2-4f5a-a9c6-11fb8c2bbc48)
 
 
+![40](https://github.com/dino-21/3tier_jsp_crud_6/assets/80396471/4bdbf20c-2002-4244-9983-beb528d7cdf0)
 
 
 
@@ -34,7 +31,7 @@ jstl 라이브러리 추가
 ${list.id}
 ${list.title}
 ${list.content}
-브라우저에서 확인하기
+브라우저에서 리스트 확인하기
 
 
 4. 리스트에서 제목 클릭하면 해당 파라미터로 가게 확인
@@ -54,7 +51,43 @@ http://localhost:8282/read?id=6
 
 
 
+6.  SampleController.java 코드 수정 - update
+@PostMapping("/update") 
 
 
+7. 글을 수정하고 업데이트 하면 한글이 깨짐
+
+8. web.xml 파일에서 한글깨짐 필터 적용하기
+
+9. 한글깨짐 필터 적용후 
+리스트에서 한글 수정하고 update 버튼 눌러서
+한글 안깨지는 확인
 
 
+10. read.jsp에서 delete 버튼을 클릭하려면 
+라우터를 /delete해줘야 하고
+form의 이름을 다른게 해줘야 해서 자바스크립트 코드가 필요함
+
+
+11 SampleController.java 코드 수정 - delete
+@PostMapping("/delete")
+
+
+12.  insert 준비
+list.jsp 코드 수정 - insert 버튼 추가 
+
+
+13. insert.jsp 페이지 만들기만들기
+
+
+14. SampleController.java 코드 수정 - insert
+@GetMapping("/insert")
+@PostMapping("/insert")
+
+
+15. list.jsp 페이지에<h3>${msg}</h3> 코드추가
+ insert, update, delete 할 경우 메시지 보이게 준비
+
+16.   SampleController.java 코드 수정 –  insert, update, delete 할 경우 메시지 보이게
+(RedirectAttributes redirectAttributes)
+redirectAttributes.addFlashAttribute("msg", "등록이 완료되었습니다.");
